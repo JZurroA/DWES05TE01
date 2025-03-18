@@ -5,7 +5,7 @@
  * Fecha: 16/03/2025
  * Asignatura: DWES
  * UD: 5 - Migración a Laravel de un Servicio Web en PHP
-*/
+ */
 
 /**
  * Namespace: App\Models
@@ -42,11 +42,11 @@ class Reservation extends Model
 
         static::creating(function ($reservation) {
             if (Carbon::parse($reservation->start_date)->isBefore(today())) {
-                throw new \InvalidArgumentException('La fecha de inicio no puede ser anterior a la fecha actual.');
+                throw new \InvalidArgumentException('The requested start date cannot be earlier than the current date.');
             }
 
             if (Carbon::parse($reservation->end_date)->isBefore($reservation->start_date)) {
-                throw new \InvalidArgumentException('La fecha de fin debe ser posterior a la fecha de inicio.');
+                throw new \InvalidArgumentException('The requested start date cannot be later than the current date.');
             }
         });
     }
